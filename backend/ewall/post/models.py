@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from categories_and_tag.models import Tags,Categories
 # Create your models here.
 class Post(models.Model):
     title = models.CharField('عنوان',max_length=200)
@@ -21,8 +22,8 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(default=timezone.now)
     status = models.BooleanField('نمایش داده شود؟')
-    # tags = models.ManyToManyField(tags) # for show Tags
-    # categories = models.ManyToManyField(categories)
+    tags = models.ManyToManyField(Tags) # for show Tags
+    categories = models.ManyToManyField(Categories)
     related_post = models.ManyToManyField('Post')
 
     def __str__(self):
