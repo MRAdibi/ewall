@@ -20,11 +20,11 @@ class Post(models.Model):
     slug = models.SlugField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    published_at = models.DateTimeField(default=timezone.now)
+    published_at = models.DateTimeField(default=timezone.now,null=True)
     status = models.BooleanField('نمایش داده شود؟')
     tags = models.ManyToManyField(Tags) # for show Tags
     categories = models.ManyToManyField(Categories)
-    related_post = models.ManyToManyField('Post')
+    related_post = models.ManyToManyField('Post',null=True)
 
     def __str__(self):
         return self.title
