@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'categories_and_tag.apps.CategoriesAndTagConfig',
     'images.apps.ImagesConfig',
+    'rest_framework',   
 ]
 
 MIDDLEWARE = [

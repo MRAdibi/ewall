@@ -8,7 +8,6 @@ class Post(models.Model):
     detail = models.TextField('توضیحات',default='توضیحاتی وجود ندارد!')
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     contact_details  = author.name
-    # covers = connect to covers table
     cities = (
         (1,'بوشهر'),
         (2,'اصفهان'),
