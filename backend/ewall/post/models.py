@@ -15,12 +15,27 @@ class Post(models.Model):
     )
 
     city = models.IntegerField('شهر شما : ', choices=cities)
-    description = models.CharField(max_length=200,default=detail[:201]) #not show to user 
+    description = models.CharField(max_length=200,default='توضیحات نمایشی') #not show to user 
     slug = models.SlugField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(default=timezone.now)
     status = models.BooleanField('نمایش داده شود؟')
+    # tags = models.ManyToManyField(tags) # for show Tags
+    # categories = models.ManyToManyField(categories)
+    related_post = models.ManyToManyField('Post')
 
-
+    def __str__(self):
+        return self.title
     
+
+class Comments(models.Model):
+    author = models.ForeignKey(User , on_delete=models.CASCADE)
+    post_id = models.ForeignKey('Post',on_delete=models.CASCADE)
+    parent_comment = models.ForeignKey('Comments',on_delete=models.CASCADE)
+    body = models.CharField('متن نظر' , max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    verification = models.BooleanField(default=False)
+
+
