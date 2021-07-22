@@ -15,7 +15,7 @@ class Post(models.Model):
     )
 
     city = models.IntegerField('شهر شما : ', choices=cities)
-    description = models.CharField(max_length=200,default='توضیحات نمایشی') #not show to user 
+    description = models.CharField(max_length=200,default='توضیحات') #not show to user 
     slug = models.SlugField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -30,12 +30,11 @@ class Post(models.Model):
     
 
 class Comments(models.Model):
-    author = models.ForeignKey(User , on_delete=models.CASCADE)
-    post_id = models.ForeignKey('Post',on_delete=models.CASCADE)
-    parent_comment = models.ForeignKey('Comments',on_delete=models.CASCADE)
-    body = models.CharField('متن نظر' , max_length=200)
+    body = models.TextField("متن نظر")
+    author = models.ForeignKey(User, verbose_name="نویسنده", on_delete=models.CASCADE)
+    post_id = models.ForeignKey(Post, verbose_name="پست مورد نظر", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    verification = models.BooleanField(default=False)
+    verification = models.BooleanField('نمایش داده شود ؟ ' , default=False)
 
 
