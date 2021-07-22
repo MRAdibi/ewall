@@ -24,18 +24,22 @@ class Post(models.Model):
     status = models.BooleanField('نمایش داده شود؟')
     tags = models.ManyToManyField(Tags) # for show Tags
     categories = models.ManyToManyField(Categories)
-    related_post = models.ManyToManyField('Post',null=True)
+    related_post = models.ManyToManyField('Post',blank=True)
 
     def __str__(self):
         return self.title
     
 
 class Comments(models.Model):
+    title = models.CharField('عنوان نظر',max_length=200,null=True)
     body = models.TextField("متن نظر")
     author = models.ForeignKey(User, verbose_name="نویسنده", on_delete=models.CASCADE)
     post_id = models.ForeignKey(Post, verbose_name="پست مورد نظر", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     verification = models.BooleanField('نمایش داده شود ؟ ' , default=False)
+
+    def __str__(self):
+        return self.title
 
 
