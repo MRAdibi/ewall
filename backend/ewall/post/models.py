@@ -80,13 +80,15 @@ class Comments(models.Model):
     #  foreign key to Post model for specify post of comment
     post_id = models.ForeignKey(Post, verbose_name="پست مورد نظر", on_delete=models.CASCADE)
 
+    parent_id = models.ForeignKey('Comments',on_delete=models.CASCADE,blank=True,null=True)    
+
     # create time of comment
     created_at = models.DateTimeField(auto_now_add=True)
 
     # update time of comment
     updated_at = models.DateTimeField(auto_now=True)
 
-    # title of Post
+    # verification status of comments
     verification = models.BooleanField('نمایش داده شود ؟ ' , default=False)
 
     # show title of comment (in django admin instead show object name (machine readable))
