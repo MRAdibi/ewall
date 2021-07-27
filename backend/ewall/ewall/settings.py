@@ -81,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ewall',
-        'USER': 'ewall',
-        'PASSWORD': 'meraj',
+        'USER': 'postgres',
+        'PASSWORD': '09397713369',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
