@@ -1,0 +1,12 @@
+/* general rules */
+body {
+  background-color: lightgray;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.rounded {
+  border-radius: 80px !important;
+}
