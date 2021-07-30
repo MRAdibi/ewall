@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { set } from "./../redux/actions/index";
 
 const AdsPage = () => {
   const [content, setContent] = useState({ data: [] });
+  const Posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/", {
@@ -12,7 +16,7 @@ const AdsPage = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        dispatch(set({ data: res.data }));
         setContent({ data: res.data });
       })
       .catch((err) => console.log(err));
@@ -21,7 +25,7 @@ const AdsPage = () => {
     <Container className="rtl">
       <Row className=" mt-5 justify-content-center">
         {content.data.map((item) => (
-          <Col className=" mx-2 mb-3">
+          <Col className=" mx-2 mb-3" key={item.id}>
             <Card border="warning" style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
