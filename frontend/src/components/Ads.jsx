@@ -6,7 +6,7 @@ const AdsPage = () => {
   const [content, setContent] = useState({ data: [] });
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/", {
+      .get("http://localhost:8000/api/", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -14,7 +14,8 @@ const AdsPage = () => {
       .then((res) => {
         console.log(res.data);
         setContent({ data: res.data });
-      });
+      })
+      .catch((err) => console.log(err));
   }, []);
   return (
     <Container className="rtl">
