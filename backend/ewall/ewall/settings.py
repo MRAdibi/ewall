@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'categories_and_tag.apps.CategoriesAndTagConfig',
     'images.apps.ImagesConfig',
+<<<<<<< HEAD
     'rest_framework',   
+=======
+    'rest_framework',  
+>>>>>>> backend
     'corsheaders'
 ]
 
@@ -53,7 +57,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+<<<<<<< HEAD
    
+=======
+>>>>>>> backend
 ]
 
 ROOT_URLCONF = 'ewall.urls'
