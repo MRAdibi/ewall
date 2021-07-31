@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'categories_and_tag.apps.CategoriesAndTagConfig',
     'images.apps.ImagesConfig',
     'rest_framework',   
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -51,9 +52,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+   
 ]
 
 ROOT_URLCONF = 'ewall.urls'
+
+CORS_ALLOWED_ORIGINS = [
+
+    "http://localhost:3000",
+    "https://127.0.0.1:3000"
+]
 
 TEMPLATES = [
     {
@@ -81,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ewall',
-        'USER': 'ewall',
-        'PASSWORD': 'meraj',
+        'USER': 'postgres',
+        'PASSWORD': '09397713369',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
