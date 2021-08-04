@@ -1,2 +1,2 @@
-# ewall
-- this is a project like divar
+# ewall project
+- a needs system made by ewall team
