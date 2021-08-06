@@ -5,10 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { set } from "./../redux/actions/index";
 
 const AdsPage = () => {
+  // this state is for containing ad objects
   const [content, setContent] = useState({ data: [] });
+  // loading posts state
   const Posts = useSelector((state) => state.posts);
+  // defining action dispatcher
   const dispatch = useDispatch();
   useEffect(() => {
+    // getting data from backend
     axios
       .get("http://localhost:8000/api/", {
         headers: {
@@ -16,7 +20,9 @@ const AdsPage = () => {
         },
       })
       .then((res) => {
+        // saving data to global redux state
         dispatch(set({ data: res.data }));
+        // saving data to in component state
         setContent({ data: res.data });
       })
       .catch((err) => console.log(err));
@@ -24,6 +30,10 @@ const AdsPage = () => {
   return (
     <Container className="rtl">
       <Row className=" mt-5 justify-content-center">
+        {/* -------------card------------- 
+           we will map into the internal content component 
+            and return it into appropirate html form
+        */}
         {content.data.map((item) => (
           <Col className=" mx-2 mb-3" key={item.id}>
             <Card border="warning" style={{ width: "18rem" }}>
@@ -43,6 +53,7 @@ const AdsPage = () => {
             </Card>
           </Col>
         ))}
+        {/* -------------card------------- */}
       </Row>
     </Container>
   );
