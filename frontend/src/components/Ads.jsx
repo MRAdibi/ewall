@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { /* useSelector,*/ useDispatch } from "react-redux";
 import { set } from "./../redux/actions/index";
 
 const AdsPage = () => {
   // this state is for containing ad objects
   const [content, setContent] = useState({ data: [] });
   // loading posts state
-  const Posts = useSelector((state) => state.posts);
+  // const Posts = useSelector((state) => state.posts); unused for now!
   // defining action dispatcher
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,7 +26,7 @@ const AdsPage = () => {
         setContent({ data: res.data });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [dispatch]);
   return (
     <Container className="rtl">
       <Row className=" mt-5 justify-content-center">
