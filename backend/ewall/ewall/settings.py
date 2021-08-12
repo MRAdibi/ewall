@@ -40,8 +40,21 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'categories_and_tag.apps.CategoriesAndTagConfig',
     'images.apps.ImagesConfig',
+    # django rest framework
     'rest_framework',    
-    'corsheaders'
+    # for fix error cors headers for browser
+    'corsheaders',
+    # use from already endpoint for authentication
+    'dj_rest_auth',
+    # for use multi domain in project
+    'django.contrib.sites',
+    # for authentication
+    'allauth',
+    # for authentication of accounts
+    'allauth.account',
+    # for registration user 
+    'dj_rest_auth.registration',
+
 ]
 
 MIDDLEWARE = [
@@ -139,3 +152,23 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# REST FRAMEWORK (Authentication)
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # use dj-rest-auth with jwt authentication ( for use dj-rest-auth endpoint with jwt)
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
+}
+
+# specify site id for main domain (ewall.ir) | and set this domain name
+SITE_ID = 1
+# specify use rest jwt api for project
+REST_USE_JWT=True
+# specify name for access token cookie (in the browser of user )
+JWT_AUTH_COOKIE = 'access-token'
+# specify name for refresh token cookie ( in the browser of user)
+JWT_AUTH_REFRESH_COOKIE = 'refresh-token'
+# for send email in backend console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
