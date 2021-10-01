@@ -52,7 +52,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tags) # for show Tags
 
     # ManyToManyField for specifies categories of post
-    categories = models.ManyToManyField(Categories)
+    categories = models.ManyToManyField(Categories, blank = True)
 
     # ManyToManyField for specifies related_post of post
     related_post = models.ManyToManyField('Post',blank=True)
