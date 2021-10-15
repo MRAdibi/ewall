@@ -32,11 +32,12 @@ const LoginPage = () => {
       .then((response) => {
         // saving access token in cookies for now
         document.cookie = `username=${response.data.access_token};`;
-        setPending({ pending: false });
+        console.log(response.data);
+        setPending({ pending: false, message: "login was successful" });
       })
       .catch((err) => {
-        console.error(err);
-        setPending({ pending: false, message: err.toString() });
+        let res = err.response.data;
+        setPending({ pending: false, message: res.non_field_errors });
       });
   }
   return (
@@ -70,7 +71,7 @@ const LoginPage = () => {
       {pending.pending ? (
         <p>wait...</p>
       ) : (
-        <p style={{ color: "red" }}>{pending.message}</p>
+        <p style={{ color: "blue" }}>{pending.message}</p>
       )}
       <Link to="/signup">اکانت ندارید؟</Link>
     </>
